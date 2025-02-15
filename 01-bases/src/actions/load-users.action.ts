@@ -1,0 +1,20 @@
+import axios from "axios"
+import { UserListResponse } from "../interfaces/reqres.response"
+
+export const loadUsersAction = async(page: number) => { 
+
+  try {
+    const { data } = await axios.get<UserListResponse>(`https://reqres.in/api/users`,
+    {
+      params: {
+        page
+      },
+    }
+  );
+
+    return data.data
+  } catch (error) {
+    console.error(error)
+    return []
+  }
+}
